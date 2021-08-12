@@ -30,3 +30,6 @@ path = "src/client.rs"
 name = "lab"
 path = "src/lab.rs"
 
+[[bin]]
+name = "lab2"
+path = "src/lab2.rs"
