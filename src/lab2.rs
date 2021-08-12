@@ -5,17 +5,9 @@ use std::io::ErrorKind;
 use std::io::Read;
 
 fn main() {
-    #[derive(Debug)]
-    enum List<T> {
-        Cons(T, Box<List<T>>),
-        Nil,
-    }
-
-    let list: List<i32> = List::Cons(1, Box::new(List::Cons(2, Box::new(List::Nil))));
-    println!("{:?}", list);
 
     let f = File::open("Cargo.toml");
-    let f = match f {
+    let _f = match f {
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("hello.txt") {
@@ -28,7 +20,7 @@ fn main() {
         },
     };
 
-    let f = File::open("hello.txt").unwrap_or_else(|error| {
+    let _f = File::open("hello.txt").unwrap_or_else(|error| {
         if error.kind() == ErrorKind::NotFound {
             File::create("hello.txt").unwrap_or_else(|error| {
                 panic!("Problem creating the file: {:?}", error);
@@ -39,7 +31,7 @@ fn main() {
     });
 }
 
-fn read_username_from_file() -> Result<String, io::Error> {
+fn _read_username_from_file() -> Result<String, io::Error> {
     let f = File::open("hello.txt");
 
     let mut f = match f {
@@ -55,19 +47,19 @@ fn read_username_from_file() -> Result<String, io::Error> {
     }
 }
 
-fn read_username_from_file2() -> Result<String, io::Error> {
+fn _read_username_from_file2() -> Result<String, io::Error> {
     let mut f = File::open("hello.txt")?;
     let mut s = String::new();
     f.read_to_string(&mut s)?;
     Ok(s)
 }
 
-fn read_username_from_file3() -> Result<String, io::Error> {
+fn _read_username_from_file3() -> Result<String, io::Error> {
     let mut s = String::new();
     File::open("hello.txt")?.read_to_string(&mut s)?;
     Ok(s)
 }
 
-fn read_username_from_file4() -> Result<String, io::Error> {
+fn _read_username_from_file4() -> Result<String, io::Error> {
     fs::read_to_string("hello.txt")
 }
