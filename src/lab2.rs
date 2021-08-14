@@ -4,10 +4,10 @@ use std::io;
 use std::io::ErrorKind;
 use std::io::Read;
 
+#[allow(dead_code, unused_variables)]
 fn main() {
-
     let f = File::open("Cargo.toml");
-    let _f = match f {
+    let f: File = match f {
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("hello.txt") {
@@ -20,7 +20,7 @@ fn main() {
         },
     };
 
-    let _f = File::open("hello.txt").unwrap_or_else(|error| {
+    let f: File = File::open("hello.txt").unwrap_or_else(|error| {
         if error.kind() == ErrorKind::NotFound {
             File::create("hello.txt").unwrap_or_else(|error| {
                 panic!("Problem creating the file: {:?}", error);

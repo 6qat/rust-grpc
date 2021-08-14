@@ -5,6 +5,7 @@ use hello_world::{HelloReply, HelloRequest};
 
 pub mod hello_world {
     tonic::include_proto!("helloworld");
+    tonic::include_proto!("dtc");
 }
 
 #[derive(Debug, Default)]
