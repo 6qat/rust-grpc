@@ -1,9 +1,14 @@
-use hello_world::greeter_client::GreeterClient;
-use hello_world::HelloRequest;
+use tonic::Response;
 
-pub mod hello_world {
-    tonic::include_proto!("helloworld");
-}
+use helloworld::greeter_client::GreeterClient;
+use helloworld::HelloReply;
+use helloworld::HelloRequest;
+
+pub mod helloworld;
+// pub mod generated/dtc;
+//pub mod helloworld {
+//    tonic::include_proto!("helloworld");
+//}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -12,8 +17,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let request = tonic::Request::new(HelloRequest {
         name: "Mr. Tonic".into(),
     });
-
-    let response = client.say_hello(request).await?;
+    let response: Response<HelloReply> = client.say_hello(request).await?;
 
     println!("RESPONSE={:?}", response);
 

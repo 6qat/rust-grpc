@@ -2,3 +2,7 @@
 /.idea/.gitignore
 /Cargo.lock
 /.idea
+/src/generated/dtc.rs
+/src/helloworld.rs
+/src/grpc_health_v1.bin
+/src/dtc.rs
