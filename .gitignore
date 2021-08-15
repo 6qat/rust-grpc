@@ -1,4 +1,5 @@
 /target
+hello.txt
 /.idea/.gitignore
 /Cargo.lock
 /.idea
